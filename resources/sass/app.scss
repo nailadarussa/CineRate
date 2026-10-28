@@ -1,0 +1,562 @@
+/* =========================================
+   1. IMPORTS (WAJIB PALING ATAS)
+========================================= 
+*/
+@import 'bootstrap/scss/bootstrap';
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+
+
+/* =========================================
+   2. KONFIGURASI WARNA & VARIABEL
+========================================= 
+*/
+:root {
+    --cr-primary: #1a1b1b;       /* Hitam/Tosca Gelap (Utama) */
+    --cr-secondary: #6d1313;     /* Merah Aksen */
+    --cr-accent: #41b883;        /* Hijau Brand (Cinerate Green) */
+    --cr-bg-light: #f8f9fa;      /* Background Body */
+    --cr-text-dark: #212529;     /* Warna Teks Utama */
+    --cr-text-muted: #6c757d;    /* Warna Teks Abu */
+}
+
+
+/* =========================================
+   3. TYPOGRAPHY & BODY DASAR
+========================================= 
+*/
+body {
+    background-color: var(--cr-bg-light);
+    color: var(--cr-text-dark);
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   4. NAVBAR & FOOTER
+========================================= 
+*/
+/* Override bg-primary jadi Hitam Tosca */
+.navbar.bg-primary {
+    background-color: var(--cr-primary) !important;
+    padding: 1rem 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+    font-weight: 900;
+    font-size: 1.8rem;
+    letter-spacing: 0.5px;
+    color: #fff !important;
+}
+
+.nav-link {
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.85) !important;
+    transition: color 0.2s;
+}
+
+.nav-link:hover, 
+.nav-link.active {
+    color: #fff !important;
+}
+
+/* Avatar Profile di Navbar */
+.avatar-profile {
+    width: 40px; 
+    height: 40px;
+    border-radius: 50%;
+    background-color: #2c3440; /* Abu Gelap */
+    color: #9ab; /* Text Abu Terang */
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1rem;
+    text-transform: uppercase;
+    border: 1px solid #445566;
+    transition: all 0.2s ease;
+}
+
+.nav-item.dropdown:hover .avatar-profile {
+    background-color: #445566;
+    color: #fff;
+    border-color: #fff;
+}
+
+.avatar-sm { width: 32px; height: 32px; font-size: 0.9rem; }
+.avatar-lg { width: 50px; height: 50px; font-size: 1.2rem; }
+
+/* Logo Gradient */
+.brand-gradient {
+    background: linear-gradient(45deg, #ffffff 20%, #41b883 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 2px 10px rgba(65, 184, 131, 0.3);
+}
+
+footer {
+    background: #fff;
+    border-top: 1px solid #ddd;
+    color: var(--cr-text-muted);
+}
+
+
+/* =========================================
+   5. TOMBOL & FORM
+========================================= 
+*/
+.btn {
+    border-radius: 8px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 10px 20px;
+    transition: all 0.2s;
+}
+
+/* Tombol Primary & Dark (Hitam) */
+.btn-primary, .btn-dark {
+    background-color: var(--cr-primary);
+    border-color: var(--cr-primary);
+    color: white;
+}
+
+.btn-primary:hover, .btn-dark:hover {
+    background-color: #000;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Input Form Modern */
+.form-control {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+}
+
+.form-control:focus {
+    border-color: var(--cr-accent);
+    box-shadow: 0 0 0 0.2rem rgba(65, 184, 131, 0.25);
+}
+
+.form-control.bg-light {
+    background-color: #f8f9fa !important;
+}
+
+
+/* =========================================
+   6. KARTU FILM (GRID)
+========================================= 
+*/
+.movie-card {
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    overflow: hidden;
+    
+    /* KUNCI TINGGI KARTU */
+    height: 100%; 
+    min-height: 380px; /* Biar semua kartu tingginya minimal segini */
+    
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: transform 0.2s;
+}
+
+.movie-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* PAKSA GAMBAR SERAGAM (INI KUNCINYA) */
+.movie-card img {
+    width: 100%;
+    height: 280px !important; /* Tinggi FIX */
+    object-fit: cover; /* Potong gambar biar pas kotak, jangan gepeng */
+    object-position: center top; /* Fokus ke wajah/atas */
+    border-bottom: 1px solid #f0f0f0;
+}
+
+/* Isi Kartu (Judul & Rating) */
+.movie-card .card-body {
+    padding: 15px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Dorong rating ke paling bawah */
+    background: white;
+}
+
+/* Judul Film (Batasi 2 Baris) */
+.movie-card h5, .movie-card h6 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+    line-height: 1.4;
+    
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Maksimal 2 baris */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* CSS KHUSUS ITEM SLIDER */
+.movie-item {
+    flex: 0 0 200px; /* Lebar kartu fix */
+    margin-right: 20px;
+    height: auto; 
+    display: flex; /* Biar height 100% jalan */
+}
+
+.rating-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0,0,0,0.8);
+    color: #ffc107;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    backdrop-filter: blur(4px);
+}
+
+
+/* =========================================
+   7. CAROUSEL & SLIDER
+========================================= 
+*/
+/* Hero Carousel */
+.carousel-item {
+    height: 500px;
+    background-color: #000;
+}
+
+.carousel-caption {
+    bottom: 2rem;
+    left: 5%; right: 5%;
+    text-align: left;
+    z-index: 10;
+    background: transparent !important; 
+}
+
+/* Tombol Panah Bulat */
+#hero-carousel .carousel-control-prev,
+#hero-carousel .carousel-control-next {
+    width: 50px;
+    height: 50px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 1px solid rgba(255,255,255,0.2);
+    opacity: 0; /* Sembunyi default */
+    transition: opacity 0.3s;
+}
+
+#hero-carousel:hover .carousel-control-prev,
+#hero-carousel:hover .carousel-control-next {
+    opacity: 1; /* Muncul pas hover */
+}
+
+#hero-carousel .carousel-control-prev { left: 20px; }
+#hero-carousel .carousel-control-next { right: 20px; }
+
+/* Slider Horizontal (Drag Scroll) */
+.movie-slider {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 10px 0 20px 0;
+    cursor: grab;
+    scrollbar-width: none; /* Firefox */
+}
+
+.movie-slider::-webkit-scrollbar { display: none; } /* Chrome */
+.movie-slider.active { cursor: grabbing; }
+
+.movie-item {
+    flex: 0 0 180px; /* Lebar kartu di slider */
+    scroll-snap-align: start;
+}
+
+.movie-item .movie-card img {
+    height: 260px; /* Tinggi sedikit lebih kecil dari grid */
+}
+
+/* =========================================
+   8. FEATURE CARDS (HOME)
+========================================= 
+*/
+.feature-card {
+    background: #fff;
+    border: 1px solid #eef2f6;
+    border-radius: 16px;
+    padding: 2.5rem 2rem; /* Padding lebih besar biar lega */
+    height: 100%;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Animasi smooth */
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+/* Efek Hover: Naik + Bayangan Besar + Border Warna */
+.feature-card:hover {
+    transform: translateY(-12px); /* Naik lebih tinggi */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    border-color: var(--cr-accent);
+}
+
+/* Lingkaran Ikon */
+.icon-square {
+    width: 70px; height: 70px; /* Ikon lebih besar */
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem;
+    margin: 0 auto 1.5rem auto; /* Tengah */
+    transition: all 0.3s ease;
+}
+
+/* WARNA KHUSUS TIAP KARTU */
+/* Track Film (Biru) */
+.card-track .icon-square { background: rgba(13, 110, 253, 0.1); color: #0d6efd; }
+.card-track:hover .icon-square { background: #0d6efd; color: #fff; transform: scale(1.1); }
+
+/* Beri Nilai (Kuning) */
+.card-rate .icon-square { background: rgba(255, 193, 7, 0.1); color: #ffc107; }
+.card-rate:hover .icon-square { background: #ffc107; color: #fff; transform: scale(1.1); }
+
+/* Koleksi (Merah/Pink) */
+.card-list .icon-square { background: rgba(220, 53, 69, 0.1); color: #dc3545; }
+.card-list:hover .icon-square { background: #dc3545; color: #fff; transform: scale(1.1); }
+
+/* Kartu Request Spesial (Hitam) */
+.card-request-dark {
+    background: var(--cr-primary);
+    color: white;
+    border: none;
+    border-radius: 16px;
+    padding: 2.5rem 2rem;
+    height: 100%;
+    transition: all 0.3s;
+    text-align: center;
+}
+.card-request-dark:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+.card-request-dark h5 { color: white !important; }
+.card-request-dark .icon-square {
+    background: rgba(255,255,255,0.1); color: #ffc107;
+    width: 70px; height: 70px; font-size: 2rem; margin: 0 auto 1.5rem auto;
+}
+.card-request-dark:hover .icon-square {
+    background: #ffc107; color: #000; transform: scale(1.1); rotate: 15deg;
+}
+
+
+/* =========================================
+   9. DETAIL FILM (DARK MODE ELEMENTS)
+========================================= 
+*/
+.text-light-muted { color: #b0b3b8 !important; }
+.text-bright { color: #ffffff !important; }
+
+.rating-box, .review-form-card {
+    background-color: #1e2329;
+    border: 1px solid #2c3440;
+    border-radius: 12px;
+}
+
+.form-control-dark {
+    background-color: #0d1117;
+    border: 1px solid #30363d;
+    color: #e0e0e0;
+}
+
+.form-control-dark:focus {
+    background-color: #0d1117;
+    color: #fff;
+    border-color: var(--cr-accent);
+}
+
+/* Star Rating CSS */
+.star-rating {
+    display: inline-flex;
+    flex-direction: row-reverse;
+    gap: 5px;
+}
+
+.star-rating input { display: none; }
+
+.star-rating label {
+    font-size: 1.5rem; color: #444; cursor: pointer; transition: 0.2s;
+}
+
+.star-rating input:checked ~ label,
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: #ffc107;
+}
+
+
+/* =========================================
+   10. WATCHLIST / PLAYLIST UX
+========================================= 
+*/
+/* Header Watchlist (Dark Gradient) */
+.card-gradient-header {
+    background: linear-gradient(135deg, #1a1b1b 0%, #2c3e50 100%);
+    color: white;
+    border: none;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    position: relative;
+    overflow: hidden;
+}
+
+.card-gradient-header::after {
+    content: '';
+    position: absolute;
+    top: -50%; right: -10%;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+.card-gradient-header h2, 
+.card-gradient-header .text-dark { color: white !important; }
+.card-gradient-header p { color: rgba(255,255,255,0.7) !important; }
+.card-gradient-header i { color: #41b883 !important; }
+
+/* Efek Kartu Tumpuk */
+.playlist-cover {
+    position: relative;
+    width: 100%;
+    padding-top: 140%;
+    background: #e9ecef;
+    border-radius: 8px;
+}
+
+.poster-stack {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    border-radius: 8px;
+    background-size: cover; background-position: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+.stack-1 { z-index: 3; }
+.stack-2 { z-index: 2; transform: rotate(4deg) translate(4px, 0) scale(0.98); }
+.stack-3 { z-index: 1; transform: rotate(8deg) translate(8px, 0) scale(0.96); }
+
+.playlist-card:hover .stack-1 { transform: translateY(-5px); }
+.playlist-card:hover .stack-2 { transform: rotate(6deg) translate(15px, 0); }
+
+/* Modal Selection (Checkbox) */
+.playlist-option {
+    cursor: pointer;
+    border: 1px solid #e2e8f0;
+    background: #fff;
+    padding: 12px 15px;
+    border-radius: 8px;
+    transition: all 0.2s;
+}
+
+.playlist-checkbox:checked + .playlist-option {
+    background-color: #f0fdf4;
+    border-color: var(--cr-accent);
+}
+
+.playlist-checkbox:checked + .playlist-option .icon-indicator {
+    color: var(--cr-accent) !important;
+    transform: scale(1.1);
+}
+
+.playlist-option:hover { background-color: #f8f9fa; border-color: #ccc; }
+
+/* --- FIX ICON LOVE (SUPER TEBAL) --- */
+.bi-heart {
+    /* Trik 1: Kasih garis tepi pada font */
+    -webkit-text-stroke: 1.5px currentColor; 
+    
+    /* Trik 2: Tambah ketebalan font */
+    font-weight: bold !important;
+    
+    /* Opsional: Kasih sedikit bayangan biar makin tegas */
+    text-shadow: 0 0 1px currentColor;
+}
+
+/* Reset untuk icon yang sudah di-like (Merah Penuh) */
+/* Biar yang merah tidak jadi gendut aneh */
+.bi-heart-fill {
+    -webkit-text-stroke: 0;
+    text-shadow: none;
+    font-weight: normal;
+}
+
+/* --- FIX AVATAR HURUF BESAR --- */
+.avatar-profile, 
+.rounded-circle {
+    text-transform: uppercase !important; /* Paksa CSS juga biar aman */
+}
+
+/* =========================================
+   11. RESPONSIVE MEDIA QUERIES
+========================================= 
+*/
+@media (max-width: 768px) {
+    /* Banner & Header lebih pendek di HP */
+    .carousel-item, .film-header {
+        height: 350px !important;
+    }
+
+    /* Font Judul dikecilkan */
+    h1.display-3, h1.display-4, h2.display-5 {
+        font-size: 2rem !important;
+    }
+
+    /* Sembunyikan panah carousel */
+    #hero-carousel .carousel-control-prev,
+    #hero-carousel .carousel-control-next {
+        display: none;
+    }
+
+    /* Caption Carousel */
+    .carousel-caption {
+        bottom: 0 !important;
+        padding-bottom: 2rem !important;
+        background: linear-gradient(to top, rgba(0,0,0,0.9) 20%, transparent) !important;
+    }
+
+    /* Tombol Hero */
+    .btn-hero {
+        font-size: 0.8rem !important;
+        padding: 8px 20px !important;
+    }
+
+    /* Layout Detail Film di HP */
+    .col-lg-3.poster-container {
+        margin-top: -50px !important;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    .detail-poster {
+        width: 60% !important;
+        margin: 0 auto;
+    }
+
+    /* Deskripsi Film Wajib Tampil */
+    .col-lg-9, .text-content, p.fs-5 {
+        display: block !important;
+        visibility: visible !important;
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+        font-size: 1rem !important;
+    }
+}
